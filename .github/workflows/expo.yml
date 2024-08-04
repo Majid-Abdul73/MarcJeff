@@ -1,0 +1,48 @@
+name: Expo React Native CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Expo CLI
+        run: npm install -g expo-cli
+
+      - name: Login to Expo
+        env:
+          EXPO_CLI_USERNAME: majid73
+          EXPO_CLI_PASSWORD: 4015059Am!!
+        run: expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD --non-interactive
+
+      - name: Build Android
+        run: expo build:android --non-interactive
+
+      - name: Build iOS
+        run: expo build:ios --non-interactive
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: |
+            *.apk
+            *.ipa

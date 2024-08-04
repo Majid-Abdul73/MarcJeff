@@ -1,0 +1,99 @@
+// // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+// buildscript {
+//     ext {
+//         buildToolsVersion = findProperty('android.buildToolsVersion') ?: '34.0.0'
+//         minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '23')
+//         compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '34')
+//         targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '34')
+//         kotlinVersion = findProperty('android.kotlinVersion') ?: '1.9.23'
+
+//         ndkVersion = "26.1.10909125"
+//     }
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+//     dependencies {
+//         classpath('com.android.tools.build:gradle')
+//         classpath('com.facebook.react:react-native-gradle-plugin')
+//         classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
+//     }
+// }
+
+// apply plugin: "com.facebook.react.rootproject"
+
+// allprojects {
+//     repositories {
+//         maven {
+//             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+//             url(new File(['node', '--print', "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), '../android'))
+//         }
+//         maven {
+//             // Android JSC is installed from npm
+//             url(new File(['node', '--print', "require.resolve('jsc-android/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim(), '../dist'))
+//         }
+
+//         google()
+//         mavenCentral()
+//         maven { url 'https://www.jitpack.io' }
+//     }
+// }
+
+
+// // In your build.gradle.kts file
+// plugins {
+//     id("com.android.application") version "8.9.0" // Use the correct version here
+//     id("org.jetbrains.kotlin.android") version "1.8.10" // Use the correct version here
+// }
+
+
+
+
+
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = findProperty('android.buildToolsVersion') ?: '34.0.0'
+        minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '23')
+        compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '34')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '34')
+        kotlinVersion = findProperty('android.kotlinVersion') ?: '1.9.23'
+        ndkVersion = "26.1.10909125"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0' // Ensure this version matches the plugin
+        classpath 'com.facebook.react:react-native-gradle-plugin:0.72.3' // Ensure the version is correct
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10' // Ensure this version is correct
+    }
+}
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply plugin: "com.facebook.react.rootproject"
+
+allprojects {
+    repositories {
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url(new File(['node', '--print', "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), '../android'))
+        }
+        maven {
+            // Android JSC is installed from npm
+            url(new File(['node', '--print', "require.resolve('jsc-android/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim(), '../dist'))
+        }
+
+        google()
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' }
+    }
+}
