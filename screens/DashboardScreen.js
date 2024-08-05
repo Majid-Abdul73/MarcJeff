@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
 import { useWaterLevel } from '../context/WaterLevelContext';
+
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
   const { waterLevel } = useWaterLevel();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Water Level Monitor</Text>
       </View>
+
       <Text style={styles.tankTitle}>Tank 1</Text>
+
       <View style={styles.progressContainer}>
         <Progress.Circle
           size={200}
@@ -49,7 +53,7 @@ const DashboardScreen = () => {
           <Text style={styles.buttonText}>Pump</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -57,11 +61,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    fontFamily: 'Manrope, Noto Sans',
   },
   header: {
     backgroundColor: '#3EB170',
-    paddingVertical: 10,
     alignItems: 'center',
     marginBottom: 20,
   },
@@ -69,6 +71,8 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 28,
     fontWeight: 'bold',
+    marginTop: 40,
+    paddingBottom: 10
   },
   tankTitle: {
     fontSize: 24,

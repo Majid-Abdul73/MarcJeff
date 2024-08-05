@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    fontFamily: 'Manrope, Noto Sans, sans-serif',
   },
   header: {
     flexDirection: 'row',
@@ -84,6 +83,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 28,
     fontWeight: 'bold',
+    marginTop:20,
   },
   statusContainer: {
     flexDirection: 'row',

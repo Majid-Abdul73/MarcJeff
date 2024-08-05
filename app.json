@@ -8,6 +8,11 @@
     "icon": "./assets/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "extra": {
+      "eas": {
+       "projectId": "0bc5b8a4-6aad-46f5-9f14-3d6e1263c09e"
+      }
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
