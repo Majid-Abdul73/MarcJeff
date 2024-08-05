@@ -10,8 +10,7 @@ const Stack = createStackNavigator();
 
 function MainStackNavigator() {
   return (
-    
-      <Stack.Navigator initialRouteName="Authentication">
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Authentication">
         <Stack.Screen name="Authentication" component={AuthenticationScreen} />
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
         <Stack.Screen name="PumpControl" component={PumpControlScreen} />

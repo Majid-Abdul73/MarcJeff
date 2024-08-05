@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import supabase from '../supabaseClient';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const waterDropSvg = `
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-    <path fill="#3EB170" d="M12 2C7.03 2 3 6.03 3 11c0 2.11.77 4.04 2.04 5.56l.01.01c.
-    03.04.07.09.11.13L12 22l6.84-5.3c.04-.04.08-.09.11-.13l.01-.01C20.23 15.04 21 13.11
-    21 11c0-4.97-4.03-9-9-9zm2.78 14.61l-3.78-2.93V7h2v6.68l2.5 1.94-1.5 1.16zM12 18l-5.5
-    -4.26L9 9.68V3h2v6.68l2.5 1.94L12 18z"/>
+    <path fill="#3EB170" d="M12 2C7.03 2 3 6.03 3 11c0 2.11.77 4.04 2.04 5.56l.01.01c.03.04.07.09.11.13L12 22l6.84-5.3c.04-.04.08-.09.11-.13l.01-.01C20.23 15.04 21 13.11 21 11c0-4.97-4.03-9-9-9zm2.78 14.61l-3.78-2.93V7h2v6.68l2.5 1.94-1.5 1.16z"/>
   </svg>`;
 
 const plusSvg = `
@@ -50,13 +48,15 @@ const AuthenticationScreen = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={styles.topContainer}>
+
+      <SafeAreaView style={styles.topContainer}>
         <SvgXml xml={waterDropSvg} width="40" height="40" style={styles.logo} />
         <Text style={styles.title}>Water Level Monitoring and Control System</Text>
-      </View>
+      </SafeAreaView>
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
-          <Image source={require('../assets/water_tank.png')} style={styles.image} />
+          <Image source={require('../assets/water_tank.jpg')} style={styles.image} />
         </View>
         <Text style={styles.subtitle}>Welcome back</Text>
         <Text style={styles.welcomeMessage}>Sign in to continue</Text>
@@ -64,7 +64,7 @@ const AuthenticationScreen = ({ navigation }) => {
           style={styles.input}
           placeholder="Enter your ID"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={value => setEmail(value)}
           placeholderTextColor="#CBCBCB"
         />
         <TextInput
@@ -72,10 +72,10 @@ const AuthenticationScreen = ({ navigation }) => {
           placeholder="Enter your Password"
           secureTextEntry
           value={password}
-          onChangeText={setPassword}
+          onChangeText={value => setPassword(value)}
           placeholderTextColor="#CBCBCB"
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 1,
     backgroundColor: 'black',
+    // paddingVertical: 50,
   },
   logo: {
     marginRight: 10,
